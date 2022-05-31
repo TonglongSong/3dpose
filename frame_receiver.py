@@ -1,5 +1,6 @@
 import socket
 import os
+import time
 from argparse import ArgumentParser
 from utils import clean_history
 
@@ -53,5 +54,8 @@ if __name__ == '__main__':
         try:
             frame_receiver(parser.parse_args())
             clean_history(30, parser.parse_args())
-        except:
+        except Exception as e:
+            print(e)
+            time.sleep(2)
             pass
+
