@@ -36,6 +36,7 @@ def postimg():
                         print(e)
                 else:
                     print('no image detected, check camera')
+                    time.sleep(1)
 
             else:
                 print("disconnected, trying to reconnect")
@@ -45,3 +46,5 @@ def postimg():
                     print(e)
         else:
             time.sleep(0.1)
+
+postimg()

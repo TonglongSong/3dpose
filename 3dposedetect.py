@@ -178,7 +178,7 @@ def inference(args):
 
     while True:
         input_data, num_cameras, exist = get_input_data('frames/',
-                                                 'frames/camera_parameters.json', gettime()-30)
+                                                 'camera_parameters.json', gettime()-30)
         if exist:
             multiview_data = {}
             image_infos = []

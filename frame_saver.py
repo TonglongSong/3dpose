@@ -12,7 +12,9 @@ while True:
         print(e)
         time.sleep(2)
     if gettime() % 1000 == 0:
-        clean_history(300)
+        clean_history(300, 'frames')
+        print('history cleaned')
+        time.sleep(0.5)
 
 
 
