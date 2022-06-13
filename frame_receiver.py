@@ -48,8 +48,6 @@ def frame_receiver(args):
 
 if __name__ == '__main__':
     parser = ArgumentParser()
-    parser.add_argument('frame_root', type=str, help='Where frame will be saved')
-    parser.add_argument('server_ip', type=str, help='ip address of the server')
     while True:
         try:
             frame_receiver(parser.parse_args())
