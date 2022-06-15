@@ -9,6 +9,7 @@ import timeit
 if not os.path.exists('3dpose/frames/'):
     os.makedirs('3dpose/frames/')
 camera = PiCamera()
+camera.resolution = (480, 270)
 lastframe = 0
 lastclean = 0
 while True:

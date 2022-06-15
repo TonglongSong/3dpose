@@ -54,6 +54,6 @@ def receiveimg(n):
 if __name__ == '__main__':
     parser = ArgumentParser()
     parser.add_argument(
-        '-c', '--camera-numbers', type=int, help='Number of cameras installed')
+        '-c', '--camera-numbers', type=int, default=1, help='Number of cameras installed')
     args = parser.parse_args()
     receiveimg(args.camera_numbers)
