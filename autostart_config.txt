@@ -1,0 +1,5 @@
+sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
+@lxterminal -e python3 /home/pi/3dpose/frame_saver.py
+@lxterminal -e python3 /home/pi/3dpose/frame_poster.py
+sudo nano /boot/config.txt
+hdmi_force_hotplug=1

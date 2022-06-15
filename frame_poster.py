@@ -5,10 +5,15 @@ from utils import gettime
 import os
 import timeit
 import time
+from PIL import Image
+
+
+            
+
 
 
 def dt_connect():
-    k = paramiko.RSAKey.from_private_key_file("app1server.pem")
+    k = paramiko.RSAKey.from_private_key_file("3dpose/app1server.pem")
     c = paramiko.SSHClient()
     c.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     print("connecting")
@@ -23,12 +28,14 @@ def postimg():
     while True:
         t = gettime()-10
         if lastpost != t:
-            if c.get_transport().is_alive():
-                if os.path.exists(f"frames/{t}.jpg"):
+            if True:
+                if os.path.exists(f"3dpose/frames/{t}.jpg"):
                     try:
                         start = timeit.default_timer()
+                        img = Image.open(f"3dpose/frames/{t}.jpg")
+                        img.save(f"3dpose/frames/{t}.jpg", optimize=True, quality = 50)
                         with SCPClient(c.get_transport()) as scp:
-                            scp.put(f"frames/{t}.jpg", '/home/ubuntu/posecapture/tempdata/cam0/')
+                            scp.put(f"3dpose/frames/{t}.jpg", '/home/ubuntu/posecapture/tempdata/cam0/')
                         stop = timeit.default_timer()
                         print(f"{t}.jpg posted in {stop - start} second" )
                         lastpost = t
@@ -47,4 +54,5 @@ def postimg():
         else:
             time.sleep(0.1)
 
+time.sleep(5)
 postimg()

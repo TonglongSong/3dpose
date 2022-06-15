@@ -1,20 +1,36 @@
-import cv2
 import time
 from utils import gettime, clean_history
+from picamera import PiCamera
+import os
+import timeit
 
-cap = cv2.VideoCapture(0)
 
+
+if not os.path.exists('3dpose/frames/'):
+    os.makedirs('3dpose/frames/')
+camera = PiCamera()
+lastframe = 0
+lastclean = 0
 while True:
-    try:
-        ret, frame = cap.read()
-        cv2.imwrite('frames/%d.jpg' % gettime(), frame)
-    except Exception as e:
-        print(e)
-        time.sleep(2)
-    if gettime() % 1000 == 0:
-        clean_history(300, 'frames')
-        print('history cleaned')
-        time.sleep(0.5)
+    t = gettime()
+    if lastframe != t:
+        try:
+            start = timeit.default_timer()
+            camera.capture(f"3dpose/frames/{t}.jpg")
+            stop = timeit.default_timer()
+            print(f"{t}.jpg captured in {stop - start} second" )
+            lastframe = t
+        except Exception as e:
+            print(e)
+            time.sleep(2)
+        if t % 1000 == 0 and t != lastclean:
+            clean_history(100, '3dpose/frames')
+            print('history cleaned')
+            lastclean = t
+    else:
+        time.sleep(0.01)
+
+
 
 
 
