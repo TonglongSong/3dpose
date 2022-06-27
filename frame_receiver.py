@@ -43,8 +43,10 @@ def receiveimg(n):
                     print(e)
 
         elif gettime() % 1000 == 0:
-            for i in range(n):
-                clean_history(300, f"frames/cam{i}")
+            #for i in range(n):
+
+
+                #clean_history(300, f"frames/cam{i}")
             print('history cleaned')
             time.sleep(0.5)
         else:
