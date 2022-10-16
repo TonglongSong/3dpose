@@ -1,5 +1,5 @@
 import time
-from utils import gettime, clean_history
+from my_utils import gettime, clean_history
 from picamera import PiCamera
 import os
 import timeit
